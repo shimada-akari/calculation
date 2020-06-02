@@ -1,0 +1,9 @@
+モジュール化のための工夫
+
+work1.py
+足し算、引き算は無視して、掛け算、割り算のみを計算する関数（mul_div）を用意した。
+足し算、引き算のみにしたtokensを返す関数を用意。(make_p_m_tokens)
+（work3に備えて）足し算、引き算を計算するのもモジュール化した。(p_m_calcuration(p_m_tokens))
+
+work3_1.py
+括弧内のみを計算する関数を用意した。(bracket_tokens)

@@ -65,11 +65,7 @@ def mul_div(tokens, index, p_m_tokens, p_m_index):
    
     return new_tokens
 
-def evaluate(tokens):
-
-    answer = 0
-    tokens.insert(0, {'type': 'PLUS'}) # Insert a dummy '+' token
-    
+def make_p_m_tokens(tokens):
     p_m_tokens = [] #掛け算と割り算を計算し、足し算と引き算のみにした辞書
     p_m_index = 0
     index = 0
@@ -91,7 +87,11 @@ def evaluate(tokens):
             exit(1)
         # print(index) #確認用
 
+    return p_m_tokens
+
+def p_m_calcuration(p_m_tokens): #足し算引き算のみのtokensを計算、answer（返り値）は整数
     index = 0
+    answer = 0
     while index < len(p_m_tokens):
         #print(p_m_tokens[index]) #確認用
         if p_m_tokens[index]['type'] == 'NUMBER':
@@ -103,6 +103,15 @@ def evaluate(tokens):
                 print('Invalid syntax')
                 exit(1)
         index += 1
+    return answer
+
+
+def evaluate(tokens):
+    tokens.insert(0, {'type': 'PLUS'}) # Insert a dummy '+' token
+    
+    p_m_tokens = make_p_m_tokens(tokens) #足し算引き算のみのtokensが返ってくる
+
+    answer = p_m_calcuration(p_m_tokens) #足し算引き算をしてanswerを出す
     return answer
 
 

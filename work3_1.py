@@ -65,7 +65,7 @@ def tokenize(line):
 
         if line[index - 1] == '(':
             tokens.append({'type': 'PLUS'})
-            
+
     return tokens
 
 def mul_div(tokens, index, p_m_tokens, p_m_index):
@@ -86,7 +86,6 @@ def mul_div(tokens, index, p_m_tokens, p_m_index):
    
     return new_tokens
 
-def 
 
 def make_p_m_tokens(tokens): #掛け算割り算を計算し、足し算引き算のみを返す
     p_m_tokens = [] #掛け算と割り算を計算し、足し算と引き算のみにした辞書
@@ -112,7 +111,7 @@ def make_p_m_tokens(tokens): #掛け算割り算を計算し、足し算引き�
 
     return p_m_tokens #足し算引き算のみのtokens
 
-def m_l_culcuration(p_m_tokens): #tokens内の足し算引き算を計算(足し算と引き算のみになったtokensが引数)
+def p_m_culcuration(p_m_tokens): #tokens内の足し算引き算を計算(足し算と引き算のみになったtokensが引数)
 
     index = 0
     answer = 0
@@ -143,7 +142,7 @@ def bracket_tokens(stack):
     # print(tokens)
 
     p_m_tokens = make_p_m_tokens(tokens) # -> p_m_tokens : 足し算引き算のみのtokens
-    tmp_answer = m_l_culcuration(p_m_tokens) #tmp_answer : 括弧内の計算結果
+    tmp_answer = p_m_culcuration(p_m_tokens) #tmp_answer : 括弧内の計算結果
 
     # print(tmp_answer)#確認用
 
@@ -154,8 +153,6 @@ def bracket_tokens(stack):
     return stack
 
 def evaluate(tokens):
-
-    answer = 0
     tokens.insert(0, {'type': 'PLUS'}) # Insert a dummy '+' token
     tokens.insert(0, {'type': 'BEGIN_BRACKET'})
     tokens.append({'type': 'END_BRACKET'})
@@ -179,6 +176,7 @@ def test(line):
     
     actualAnswer = evaluate(tokens)
     expectedAnswer = eval(line)
+
     if abs(actualAnswer - expectedAnswer) < 1e-8:
         print("PASS! (%s = %f)" % (line, expectedAnswer))
     else:
